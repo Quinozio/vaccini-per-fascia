@@ -8,6 +8,7 @@
     <link rel="icon" id="favicon" type="image/x-icon" href="favicon.ico" />
     <script src="script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.0/chart.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment.min.js"></script>
     <script src="lib/chartjs-plugin-labels.min.js"></script>
 
     <style>
@@ -22,7 +23,14 @@
     </style>
   </head>
   <body>
-    <select style="width: 50rem; margin-bottom: 2rem;" id="regioni"></select>
+    <select style="width: 50rem; margin-bottom: 2rem" id="regioni"></select>
+    <select style="width: 50rem; margin-bottom: 2rem" id="periodo">
+      <option value="settimana" selected>Ultima settimana</option>
+      <option value="1_mese">Ultimo mese</option>
+      <option value="3_mesi">Ultimi 3 mesi</option>
+      <option value="6_mesi">Ultimi 6 mesi</option>
+      <option value="sempre" >Sempre</option>
+    </select>
     <div style="display: flex">
       <div><canvas id="16-19"></canvas></div>
       <div><canvas id="20-29"></canvas></div>
