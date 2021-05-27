@@ -13,7 +13,7 @@ fetch("vaccini-per-fascia/data/somministrazioni-vaccini-latest.json")
 
     const regioni = groupBy(data, "nome_area");
     const select = createSelectRegioni(regioni);
-    createChart(data, "Veneto");
+    createChart(data, "Abruzzo");
     select.addEventListener("change", (event) => {
       console.log(event);
       Object.keys(charts).forEach((chart) => {
