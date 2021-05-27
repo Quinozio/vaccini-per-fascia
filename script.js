@@ -6,39 +6,45 @@ var groupBy = function (xs, key) {
 };
 
 const charts = {};
-fetch("data/somministrazioni-vaccini-latest.json")
-  .then((response) => response.json())
-  .then((res) => {
-    const data = res.data;
+document.addEventListener(
+  "DOMContentLoaded",
+  () => {
+    fetch("data/somministrazioni-vaccini-latest.json")
+      .then((response) => response.json())
+      .then((res) => {
+        const data = res.data;
 
-    const regioni = groupBy(data, "nome_area");
-    const selectRegioni = createSelectRegioni(regioni);
-    const periodo = document.getElementById("periodo");
-    createChart(JSON.parse(JSON.stringify(data)), "Abruzzo", "settimana");
-    periodo.addEventListener("change", (event) => {
-      Object.keys(charts).forEach((chart) => {
-        charts[chart].destroy();
-      });
-      const regione = selectRegioni.value;
-      createChart(
-        JSON.parse(JSON.stringify(data)),
-        regione,
-        event.target.value
-      );
-    });
-    selectRegioni.addEventListener("change", (event) => {
-      Object.keys(charts).forEach((chart) => {
-        charts[chart].destroy();
-      });
+        const regioni = groupBy(data, "nome_area");
+        const selectRegioni = createSelectRegioni(regioni);
+        const periodo = document.getElementById("periodo");
+        createChart(JSON.parse(JSON.stringify(data)), "Abruzzo", "settimana");
+        periodo.addEventListener("change", (event) => {
+          Object.keys(charts).forEach((chart) => {
+            charts[chart].destroy();
+          });
+          const regione = selectRegioni.value;
+          createChart(
+            JSON.parse(JSON.stringify(data)),
+            regione,
+            event.target.value
+          );
+        });
+        selectRegioni.addEventListener("change", (event) => {
+          Object.keys(charts).forEach((chart) => {
+            charts[chart].destroy();
+          });
 
-      createChart(
-        JSON.parse(JSON.stringify(data)),
-        event.target.value,
-        periodo.value
-      );
-    });
-  })
-  .catch((error) => console.error(error));
+          createChart(
+            JSON.parse(JSON.stringify(data)),
+            event.target.value,
+            periodo.value
+          );
+        });
+      })
+      .catch((error) => console.error(error));
+  },
+  false
+);
 
 function createChart(data, regione, periodo) {
   const dataByRegione = data.filter((item) => item.nome_area === regione);
