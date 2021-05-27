@@ -5,15 +5,28 @@ var groupBy = function (xs, key) {
   }, {});
 };
 
+const HttpClient = function () {
+  this.get = function (aUrl, aCallback) {
+    var anHttpRequest = new XMLHttpRequest();
+    anHttpRequest.onreadystatechange = function () {
+      if (anHttpRequest.readyState == 4 && anHttpRequest.status == 200)
+        aCallback(anHttpRequest.responseText);
+    };
+
+    anHttpRequest.open("GET", aUrl, true);
+    anHttpRequest.send(null);
+  };
+};
+
 const charts = {};
 document.addEventListener(
   "DOMContentLoaded",
   () => {
-    fetch("data/somministrazioni-vaccini-latest.json")
-      .then((response) => response.json())
-      .then((res) => {
-        const data = res.data;
-
+    const client = new HttpClient();
+    client.get(
+      "https://raw.githubusercontent.com/italia/covid19-opendata-vaccini/master/dati/somministrazioni-vaccini-latest.json",
+      (response) => {
+        const data = JSON.parse(response).data;
         const regioni = groupBy(data, "nome_area");
         const selectRegioni = createSelectRegioni(regioni);
         const periodo = document.getElementById("periodo");
@@ -40,8 +53,8 @@ document.addEventListener(
             periodo.value
           );
         });
-      })
-      .catch((error) => console.error(error));
+      }
+    );
   },
   false
 );
@@ -54,7 +67,6 @@ function createChart(data, regione, periodo) {
 
   const fasceByFornitore = getFasceByFornitore(fasceByPeriodo);
   const colorScheme = ["#25CCF7", "#FD7272", "#54a0ff", "#00d2d3"];
-  console.log(fasceByFornitore);
   Object.keys(fasceByFornitore).forEach((fascia) => {
     const chartData = {
       labels: [],
