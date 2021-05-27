@@ -6,7 +6,7 @@ var groupBy = function (xs, key) {
 };
 
 const charts = {};
-fetch("vaccini-per-fascia/data/somministrazioni-vaccini-latest.json")
+fetch("data/somministrazioni-vaccini-latest.json")
   .then((response) => response.json())
   .then((res) => {
     const data = res.data;
