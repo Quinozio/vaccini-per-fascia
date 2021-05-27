@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" id="favicon" type="image/x-icon" href="favicon.ico" />
+    <script src="script.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.0/chart.min.js"></script>
+    <script src="lib/chartjs-plugin-labels.min.js"></script>
+
+    <style>
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0.5rem;
+        box-sizing: border-box;
+      }
+    </style>
+  </head>
+  <body>
+    <select style="width: 50rem; margin-bottom: 2rem;" id="regioni"></select>
+    <div style="display: flex">
+      <div><canvas id="16-19"></canvas></div>
+      <div><canvas id="20-29"></canvas></div>
+      <div><canvas id="30-39"></canvas></div>
+      <div><canvas id="40-49"></canvas></div>
+    </div>
+    <div style="display: flex">
+      <div><canvas id="50-59"></canvas></div>
+      <div><canvas id="60-69"></canvas></div>
+      <div><canvas id="70-79"></canvas></div>
+      <div><canvas id="80-89"></canvas></div>
+      <div><canvas id="90+"></canvas></div>
+    </div>
+  </body>
+</html>
