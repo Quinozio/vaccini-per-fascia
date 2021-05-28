@@ -79,10 +79,13 @@ function createChart(data, regione, periodo) {
         },
       ],
     };
+    let totale;
     Object.keys(fasceByFornitore[fascia]).forEach((fornitore) => {
       chartData.labels.push(fornitore);
+      totale += fasceByFornitore[fascia][fornitore];
       chartData.datasets[0].data.push(fasceByFornitore[fascia][fornitore]);
     });
+    document.getElementById("totale_" + fascia).innerHTML = totale;
     charts[fascia] = new Chart(document.getElementById(fascia), {
       type: "pie",
       data: chartData,
