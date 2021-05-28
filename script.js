@@ -79,19 +79,19 @@ function createChart(data, regione, periodo) {
         },
       ],
     };
-    let totale;
+    let totale = 0;
     Object.keys(fasceByFornitore[fascia]).forEach((fornitore) => {
       chartData.labels.push(fornitore);
       totale += fasceByFornitore[fascia][fornitore];
       chartData.datasets[0].data.push(fasceByFornitore[fascia][fornitore]);
     });
-    document.getElementById("totale_" + fascia).innerHTML = totale;
+    document.getElementById("totale_" + fascia).innerHTML = "Totale: " + totale;
     charts[fascia] = new Chart(document.getElementById(fascia), {
       type: "pie",
       data: chartData,
       options: {
         responsive: true,
-        maintainAspectRatio: false,
+        maintainAspectRatio: true,
 
         plugins: {
           legend: {

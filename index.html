@@ -20,6 +20,32 @@
         padding: 0.5rem;
         box-sizing: border-box;
       }
+      span {
+        display: block;
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 1rem;
+      }
+      canvas {
+        margin-bottom: 2rem;
+      }
+      .d-flex {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .d-flex > div {
+        width: 20%;
+      }
+      @media screen and (max-width: 1400px) {
+        .d-flex > div {
+          width: 25%;
+        }
+      }
+      @media screen and (max-width: 992px) {
+        .d-flex > div {
+          width: 100%;
+        }
+      }
     </style>
   </head>
   <body>
@@ -31,13 +57,11 @@
       <option value="6_mesi">Ultimi 6 mesi</option>
       <option value="sempre">Sempre</option>
     </select>
-    <div style="display: flex">
+    <div class="d-flex">
       <div><span id="totale_16-19"></span><canvas id="16-19"></canvas></div>
       <div><span id="totale_20-29"></span><canvas id="20-29"></canvas></div>
       <div><span id="totale_30-39"></span><canvas id="30-39"></canvas></div>
       <div><span id="totale_40-49"></span><canvas id="40-49"></canvas></div>
-    </div>
-    <div style="display: flex">
       <div><span id="totale_50-59"></span><canvas id="50-59"></canvas></div>
       <div><span id="totale_60-69"></span><canvas id="60-69"></canvas></div>
       <div><span id="totale_70-79"></span><canvas id="70-79"></canvas></div>
