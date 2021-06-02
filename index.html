@@ -37,6 +37,9 @@
       canvas {
         margin-bottom: 2rem;
       }
+      .toolbar {
+        margin-bottom: 2rem;
+      }
       .d-flex {
         display: flex;
         flex-wrap: wrap;
@@ -54,11 +57,18 @@
         .d-flex > div {
           width: 100%;
         }
+        select {
+          width: calc(50% - 0.5rem);
+          margin-right: 0.5rem;
+        }
+        .toolbar {
+          margin-bottom: 0;
+        }
       }
     </style>
   </head>
   <body>
-    <div class="d-flex" style="margin-bottom: 2rem">
+    <div class="d-flex toolbar">
       <select id="regioni"></select>
       <select id="periodo">
         <option value="settimana" selected>Ultima settimana</option>
