@@ -95,7 +95,7 @@ function createChart(data, regione, periodo) {
       totale += fasceByFornitore[fascia][fornitore];
       chartData.datasets[0].data.push(fasceByFornitore[fascia][fornitore]);
     });
-    document.getElementById("totale_" + fascia).innerHTML = "Totale: " + totale;
+    document.getElementById("totale_" + fascia).innerHTML = "Totale: " + new Intl.NumberFormat().format(totale);
     charts[fascia] = new Chart(document.getElementById(fascia), {
       type: "pie",
       data: chartData,
@@ -170,8 +170,10 @@ function getFasceByPeriodo(periodo, fasce) {
         }
         if (
           moment(item.data_somministrazione).isBetween(
-            previusRange.format(),
-            moment(new Date()).format()
+            previusRange,
+            moment(new Date()),
+            'day',
+            '[('
           )
         ) {
           fasceByPeriodo[fascia].push(item);

@@ -12,6 +12,8 @@
     <script src="lib/chartjs-plugin-labels.min.js"></script>
 
     <style>
+      @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
+
       html,
       body {
         height: 100%;
@@ -19,6 +21,7 @@
         margin: 0;
         padding: 0.5rem;
         box-sizing: border-box;
+        font-family: "Open Sans", sans-serif;
       }
       select {
         width: 25%;
@@ -55,7 +58,7 @@
     </style>
   </head>
   <body>
-    <div class="d-flex" style="margin-bottom: 2rem;">
+    <div class="d-flex" style="margin-bottom: 2rem">
       <select id="regioni"></select>
       <select id="periodo">
         <option value="settimana" selected>Ultima settimana</option>
