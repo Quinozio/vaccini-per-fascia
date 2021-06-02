@@ -20,6 +20,11 @@
         padding: 0.5rem;
         box-sizing: border-box;
       }
+      select {
+        width: 25%;
+        margin-right: 2rem;
+        height: 2rem;
+      }
       span {
         display: block;
         text-align: center;
@@ -32,6 +37,7 @@
       .d-flex {
         display: flex;
         flex-wrap: wrap;
+        align-items: center;
       }
       .d-flex > div {
         width: 20%;
@@ -49,16 +55,19 @@
     </style>
   </head>
   <body>
-    <select style="width: 50rem; margin-bottom: 2rem" id="regioni"></select>
-    <select style="width: 50rem; margin-bottom: 2rem" id="periodo">
-      <option value="settimana" selected>Ultima settimana</option>
-      <option value="1_mese">Ultimo mese</option>
-      <option value="3_mesi">Ultimi 3 mesi</option>
-      <option value="6_mesi">Ultimi 6 mesi</option>
-      <option value="sempre">Sempre</option>
-    </select>
+    <div class="d-flex" style="margin-bottom: 2rem;">
+      <select id="regioni"></select>
+      <select id="periodo">
+        <option value="settimana" selected>Ultima settimana</option>
+        <option value="1_mese">Ultimo mese</option>
+        <option value="3_mesi">Ultimi 3 mesi</option>
+        <option value="6_mesi">Ultimi 6 mesi</option>
+        <option value="sempre">Sempre</option>
+      </select>
+      <h4>Ultimo aggiornamento: <strong id="lastUpdate"></strong></h4>
+    </div>
     <div class="d-flex">
-      <div><span id="totale_16-19"></span><canvas id="16-19"></canvas></div>
+      <div><span id="totale_12-19"></span><canvas id="12-19"></canvas></div>
       <div><span id="totale_20-29"></span><canvas id="20-29"></canvas></div>
       <div><span id="totale_30-39"></span><canvas id="30-39"></canvas></div>
       <div><span id="totale_40-49"></span><canvas id="40-49"></canvas></div>

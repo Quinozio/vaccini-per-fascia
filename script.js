@@ -27,6 +27,8 @@ document.addEventListener(
       "https://raw.githubusercontent.com/italia/covid19-opendata-vaccini/master/dati/somministrazioni-vaccini-latest.json",
       (response) => {
         const data = JSON.parse(response).data;
+        const lastUpdate = getLastUpdate(data);
+        document.getElementById("lastUpdate").innerHTML = lastUpdate;
         const regioni = groupBy(data, "nome_area");
         const selectRegioni = createSelectRegioni(regioni);
         const periodo = document.getElementById("periodo");
@@ -58,6 +60,14 @@ document.addEventListener(
   },
   false
 );
+
+function getLastUpdate(data) {
+  const lastUpdate = new Date(data[data.length - 1].data_somministrazione);
+  const formattedLastUpdate = `${lastUpdate.getDate()}/${
+    lastUpdate.getMonth() + 1
+  }/${lastUpdate.getFullYear()}`;
+  return formattedLastUpdate;
+}
 
 function createChart(data, regione, periodo) {
   const dataByRegione = data.filter((item) => item.nome_area === regione);
