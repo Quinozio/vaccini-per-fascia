@@ -10,62 +10,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.3.0/chart.min.js"></script>
     <script src="https://momentjs.com/downloads/moment.min.js"></script>
     <script src="lib/chartjs-plugin-labels.min.js"></script>
+    <script src="lib/moment.min.js"></script>
 
-    <style>
-      @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap");
-
-      html,
-      body {
-        height: 100%;
-        width: 100%;
-        margin: 0;
-        padding: 0.5rem;
-        box-sizing: border-box;
-        font-family: "Open Sans", sans-serif;
-      }
-      select {
-        width: 25%;
-        margin-right: 2rem;
-        height: 2rem;
-      }
-      span {
-        display: block;
-        text-align: center;
-        font-weight: bold;
-        margin-bottom: 1rem;
-      }
-      canvas {
-        margin-bottom: 2rem;
-      }
-      .toolbar {
-        margin-bottom: 2rem;
-      }
-      .d-flex {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-      }
-      .d-flex > div {
-        width: 20%;
-      }
-      @media screen and (max-width: 1400px) {
-        .d-flex > div {
-          width: 25%;
-        }
-      }
-      @media screen and (max-width: 992px) {
-        .d-flex > div {
-          width: 100%;
-        }
-        select {
-          width: calc(50% - 0.5rem);
-          margin-right: 0.5rem;
-        }
-        .toolbar {
-          margin-bottom: 0;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
     <div class="d-flex toolbar">
@@ -77,18 +24,28 @@
         <option value="6_mesi">Ultimi 6 mesi</option>
         <option value="sempre">Sempre</option>
       </select>
-      <h4>Ultimo aggiornamento: <strong id="lastUpdate"></strong></h4>
+      <h4 class="flex-1">
+        Ultimo aggiornamento: <strong id="lastUpdate"></strong>
+      </h4>
+      <h4>
+        Fonte:
+        <a
+          target="_blank"
+          href="https://github.com/italia/covid19-opendata-vaccini"
+          >Opendata Vaccini</a
+        >
+      </h4>
     </div>
     <div class="d-flex">
-      <div><span id="totale_12-19"></span><canvas id="12-19"></canvas></div>
-      <div><span id="totale_20-29"></span><canvas id="20-29"></canvas></div>
-      <div><span id="totale_30-39"></span><canvas id="30-39"></canvas></div>
-      <div><span id="totale_40-49"></span><canvas id="40-49"></canvas></div>
-      <div><span id="totale_50-59"></span><canvas id="50-59"></canvas></div>
-      <div><span id="totale_60-69"></span><canvas id="60-69"></canvas></div>
-      <div><span id="totale_70-79"></span><canvas id="70-79"></canvas></div>
-      <div><span id="totale_80-89"></span><canvas id="80-89"></canvas></div>
-      <div><span id="totale_90+"></span><canvas id="90+"></canvas></div>
+      <div><canvas id="12-19"></canvas></div>
+      <div><canvas id="20-29"></canvas></div>
+      <div><canvas id="30-39"></canvas></div>
+      <div><canvas id="40-49"></canvas></div>
+      <div><canvas id="50-59"></canvas></div>
+      <div><canvas id="60-69"></canvas></div>
+      <div><canvas id="70-79"></canvas></div>
+      <div><canvas id="80-89"></canvas></div>
+      <div><canvas id="90+"></canvas></div>
     </div>
   </body>
 </html>

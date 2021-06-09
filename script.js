@@ -62,11 +62,7 @@ document.addEventListener(
 );
 
 function getLastUpdate(data) {
-  const lastUpdate = new Date(data[data.length - 1].data_somministrazione);
-  const formattedLastUpdate = `${lastUpdate.getDate()}/${
-    lastUpdate.getMonth() + 1
-  }/${lastUpdate.getFullYear()}`;
-  return formattedLastUpdate;
+  return moment(data[data.length - 1].data_somministrazione).utc().format('DD/MM/YYYY HH:mm'); 
 }
 
 function createChart(data, regione, periodo) {
@@ -95,7 +91,6 @@ function createChart(data, regione, periodo) {
       totale += fasceByFornitore[fascia][fornitore];
       chartData.datasets[0].data.push(fasceByFornitore[fascia][fornitore]);
     });
-    document.getElementById("totale_" + fascia).innerHTML = "Totale: " + new Intl.NumberFormat().format(totale);
     charts[fascia] = new Chart(document.getElementById(fascia), {
       type: "pie",
       data: chartData,
@@ -109,12 +104,30 @@ function createChart(data, regione, periodo) {
           },
           title: {
             display: true,
-            text: "Fascia " + fascia,
+            text: `Fascia ${fascia} - Totale: ${totale}`,
+            font: {
+              size: 16,
+              weight: 'bold'
+            },
           },
-
+          tooltip: {
+            callbacks: {
+              label: (item) => {
+                const total = item.dataset.data.reduce(
+                  (previousValue, currentValue) => previousValue + currentValue
+                );
+                const currentValue = item.dataset.data[item.dataIndex];
+                const percentage = ((currentValue / total) * 100).toFixed(2);
+                return `${item.label}: ${item.raw} (${percentage}%)`;
+              },
+            },
+          },
           labels: {
             render: "percentage",
             precision: 2,
+            fontSize: 16,
+            textMargin: 0,
+            position: "default",
           },
         },
       },
@@ -172,8 +185,8 @@ function getFasceByPeriodo(periodo, fasce) {
           moment(item.data_somministrazione).isBetween(
             previusRange,
             moment(new Date()),
-            'day',
-            '[('
+            "day",
+            "[("
           )
         ) {
           fasceByPeriodo[fascia].push(item);
